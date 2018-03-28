@@ -12,18 +12,19 @@ $(document).ready(function () {
     });
     
     // Get the height of the sticky main nav and create position for scrolling by links
-    let navHeight = $('.logo-min').height() + 10,
-        scrollToPosition;
+    const navHeight = $('.logo-min').height() + 10;
 
     /* Scroll on boards */
     $('.js--scroll-to-plans').click(function () {
-        scrollToPosition = $('.js--section-plans').offset().top - navHeight;
-        $('html, body').animate({ scrollTop: scrollToPosition }, 1000);
+        $('html, body').animate({ 
+            scrollTop: $('.js--section-plans').offset().top - navHeight 
+        }, 1000);
     });
 
     $('.js--scroll-to-start').click(function () {
-        scrollToPosition = $('.js--section-plans').offset().top - navHeight;
-        $('html, body').animate({ scrollTop: scrollToPosition }, 1000);
+        $('html, body').animate({ 
+            scrollTop: $('.js--section-features').offset().top - navHeight 
+        }, 1000);
     });
 
     /* Navigation scroll */
@@ -42,7 +43,6 @@ $(document).ready(function () {
                 // Figure out element to scroll to
                 var target = $(this.hash);
                 target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                scrollToPosition = $(target).offset().top - navHeight;
                 // Does a scroll target exist?
                 if (target.length) {
                     // For active mobile navigation with clear nav
@@ -52,8 +52,19 @@ $(document).ready(function () {
                     // Only prevent default if animation is actually gonna happen
                     event.preventDefault();
                     $('html, body').animate({
-                        scrollTop: scrollToPosition
-                    }, 1000);
+                        scrollTop: $(target).offset().top - navHeight
+                    }, 1000, function () {
+                        // Callback after animation
+                        // Must change focus!
+                        var $target = $(target);
+                        $target.focus();
+                        if ($target.is(":focus")) { // Checking if the target was focused
+                            return false;
+                        } else {
+                            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                            $target.focus(); // Set focus again
+                        };
+                    });
                 }
             }
         });
