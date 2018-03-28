@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    // Get the height of the sticky main nav
+    let navHeight = $('.logo-min').height() + 10;
+
     /* For the sticky navigation */
     $('.js--section-features').waypoint(function (direction) {
         if (direction == "down") {
@@ -14,11 +17,11 @@ $(document).ready(function () {
 
     /* Scroll on boards */
     $('.js--scroll-to-plans').click(function () {
-        $('html, body').animate({ scrollTop: $('.js--section-plans').offset().top }, 1000);
+        $('html, body').animate({ scrollTop: $('.js--section-plans').offset().top - navHeight }, 1000);
     });
 
     $('.js--scroll-to-start').click(function () {
-        $('html, body').animate({ scrollTop: $('.js--section-features').offset().top }, 1000);
+        $('html, body').animate({ scrollTop: $('.js--section-features').offset().top - navHeight }, 1000);
     });
 
     /* Navigation scroll */
@@ -42,14 +45,10 @@ $(document).ready(function () {
                     // For active mobile navigation with clear nav
                     if ($('.mobile-nav-icon i').hasClass('ion-close-round')) {
                         activeMobileNavi();
-                    }
-
-                    // Get the height of the sticky main nav
-                    let navHeight = $('.logo-min').height() + 10,
-                        scrollToPosition = $(target).offset().top - navHeight;
-
+                    }                    
                     // Only prevent default if animation is actually gonna happen
                     event.preventDefault();
+                    let scrollToPosition = $(target).offset().top - navHeight;
                     $('html, body').animate({
                         scrollTop: scrollToPosition
                     }, 1000, function () {
