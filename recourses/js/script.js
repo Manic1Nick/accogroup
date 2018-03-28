@@ -48,9 +48,8 @@ $(document).ready(function () {
                     }                    
                     // Only prevent default if animation is actually gonna happen
                     event.preventDefault();
-                    let scrollToPosition = $(target).offset().top - navHeight;
                     $('html, body').animate({
-                        scrollTop: scrollToPosition
+                        scrollTop: $(target).offset().top - navHeight
                     }, 1000, function () {
                         // Callback after animation
                         // Must change focus!
