@@ -12,7 +12,7 @@ $(document).ready(function () {
     });
     
     // Get the height of the sticky main nav and create position for scrolling by links
-    var navHeight = $('.logo-min').height() + 10,
+    let navHeight = $('.logo-min').height() + 10,
         scrollToPosition;
 
     /* Scroll on boards */
@@ -53,18 +53,7 @@ $(document).ready(function () {
                     event.preventDefault();
                     $('html, body').animate({
                         scrollTop: scrollToPosition
-                    }, 3000, function () {
-                        // Callback after animation
-                        // Must change focus!
-                        var $target = $(target);
-                        $target.focus();
-                        if ($target.is(":focus")) { // Checking if the target was focused
-                            return false;
-                        } else {
-                            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-                            $target.focus(); // Set focus again
-                        };
-                    });
+                    }, 1000);
                 }
             }
         });
