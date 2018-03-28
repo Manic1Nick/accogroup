@@ -45,7 +45,7 @@ $(document).ready(function () {
                     }
 
                     // Get the height of the sticky main nav
-                    let navHeight = $('.logo-min').height(),
+                    let navHeight = $('.logo-min').height() + 10,
                         scrollToPosition = $(target).offset().top - navHeight;
 
                     // Only prevent default if animation is actually gonna happen
