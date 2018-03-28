@@ -300,7 +300,10 @@ header {
 }
 
 .sticky .logo { display: none; }
-.sticky .logo-min { display: block; }
+.sticky .logo-min { 
+    display: block; 
+    margin: 5px 0;
+}
 
 
 /*---------------------------------------------------------*/

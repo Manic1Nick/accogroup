@@ -39,10 +39,19 @@ $(document).ready(function () {
                 target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
                 // Does a scroll target exist?
                 if (target.length) {
+                    // For active mobile navigation with clear nav
+                    if ($('.mobile-nav-icon i').hasClass('ion-close-round')) {
+                        activeMobileNavi();
+                    }
+
+                    // Get the height of the sticky main nav
+                    let navHeight = $('.logo-min').height(),
+                        scrollToPosition = $(target).offset().top - navHeight;
+
                     // Only prevent default if animation is actually gonna happen
                     event.preventDefault();
                     $('html, body').animate({
-                        scrollTop: target.offset().top
+                        scrollTop: scrollToPosition
                     }, 1000, function () {
                         // Callback after animation
                         // Must change focus!
@@ -89,9 +98,11 @@ $(document).ready(function () {
     });
 
     /* Mobile navi */
-    $('.js--nav-icon').click(function() {
-        var nav = $('.js--main-nav');
-        var icon = $('.js--nav-icon i');
+    $('.js--nav-icon').click(() => activeMobileNavi());
+
+    let activeMobileNavi = function() {
+        let nav = $('.js--main-nav'),
+            icon = $('.js--nav-icon i');
 
         nav.slideToggle(200);
 
@@ -102,6 +113,5 @@ $(document).ready(function () {
             icon.addClass('ion-navicon-round');
             icon.removeClass('ion-close-round');
         }
-    });
-
+    }
 })

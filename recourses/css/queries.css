@@ -20,6 +20,16 @@
         margin-left: 10%;
     }
 
+    .logo { display: none; }
+    .logo-min { 
+        display: block; 
+        margin-top: 20px;
+    }
+
+    .main-nav {
+        margin-top: 35px;
+    }
+
     .steps-box { margin-top: 10px; }
     .steps-box:last-child { margin-top: 10px; }
     .works-steps { margin-bottom: 40px; }
