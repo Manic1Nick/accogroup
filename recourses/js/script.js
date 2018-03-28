@@ -53,7 +53,7 @@ $(document).ready(function () {
                     event.preventDefault();
                     $('html, body').animate({
                         scrollTop: scrollToPosition
-                    }, 1000, function () {
+                    }, 3000, function () {
                         // Callback after animation
                         // Must change focus!
                         var $target = $(target);
