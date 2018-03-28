@@ -105,7 +105,10 @@
     }
 
     .meals-showcase { 
-        flex-direction: column; 
+        -webkit-box-orient: vertical; 
+        -webkit-box-direction: normal; 
+            -ms-flex-direction: column; 
+                flex-direction: column; 
         width: 50%; 
     }
     .meals-showcase li { width: 100%; }
@@ -163,7 +166,10 @@
     .contact-form { width: 100%; }
 
     .meals-showcase { 
-        flex-direction: column; 
+        -webkit-box-orient: vertical; 
+        -webkit-box-direction: normal; 
+            -ms-flex-direction: column; 
+                flex-direction: column; 
         width: 50%; 
     }
     .meals-showcase li { width: 100%; }
