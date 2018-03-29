@@ -20,7 +20,7 @@
         margin-left: 10%;
     }
 
-    .logo { display: none; }
+    .logo-max { display: none; }
     .logo-min { 
         display: block; 
         margin-top: 20px;
@@ -172,8 +172,10 @@
         margin-top: 20px;
     }
 
-    .main-nav li {
-        font-size: 80%;
+    .sticky .logo-min { display: none; }
+    .sticky .logo-sign { 
+        display: block; 
+        margin: 5px 0; 
     }
 
     .meals-showcase { 

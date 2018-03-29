@@ -27,6 +27,12 @@ $(document).ready(function () {
         }, 1000);
     });
 
+    $(document).on("click", "#logo", function () {
+        $('html, body').animate({ 
+            scrollTop: $('body').offset().top
+        }, 1000);
+    });
+
     /* Navigation scroll */
     // Select all links with hashes
     $('a[href*="#"]')

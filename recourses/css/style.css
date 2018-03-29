@@ -221,21 +221,14 @@ header {
     height: 100%; */
 }
 
-.logo {
+.logo-max {
     height: 80px;
     width: auto;
     float: left;
     margin-top: 20px;
 }
 
-.logo-min { 
-    display: none; 
-    height: 50px;
-    width: auto;
-    float: left;
-    margin: 5px 0;
-}
-
+.logo-min,
 .logo-sign { 
     display: none; 
     height: 50px;
@@ -244,6 +237,8 @@ header {
     margin: 5px 0;
 }
 
+#logo { cursor: pointer; }
+
 
 /* Main navi */
 .main-nav {
@@ -251,7 +246,6 @@ header {
     float: right;
     list-style: none;
     margin-top: 55px;
-    z-index: 999;
 }
 
 .main-nav li {
@@ -310,12 +304,13 @@ header {
     color: #555;
 }
 
-.sticky .logo { display: none; }
-.sticky .logo-min { display: none; }
+.sticky .logo-min,
 .sticky .logo-sign { 
     display: block; 
     margin: 5px 0;
 }
+.sticky .logo-max { display: none; }
+.sticky .logo-sign { display: none; }
 
 
 /*---------------------------------------------------------*/
