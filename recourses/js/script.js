@@ -53,8 +53,18 @@ $(document).ready(function () {
                     event.preventDefault();
                     $('html, body').animate({
                         scrollTop: target.offset().top - navHeight
-                    }, 1000);
-                    return false;
+                    }, 1000, function () {
+                        // Callback after animation
+                        // Must change focus!
+                        var $target = $(target);
+                        $target.focus();
+                        if ($target.is(":focus")) { // Checking if the target was focused
+                            return false;
+                        } else {
+                            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                            $target.focus(); // Set focus again
+                        };
+                    });
                 }
             }
         });
@@ -92,17 +102,18 @@ $(document).ready(function () {
     $('.js--nav-icon').click(() => activeMobileNavi());
 
     let activeMobileNavi = function() {
-        let nav = $('.js--main-nav'),
-            icon = $('.js--nav-icon i');
+        let icon = $('.js--nav-icon i');
 
-        nav.slideToggle(200);
+        $('.js--main-nav').slideToggle(200);
 
         if (icon.hasClass('ion-navicon-round')) {
             icon.addClass('ion-close-round');
             icon.removeClass('ion-navicon-round');
+            $('.hero-text-box').fadeOut();
         } else {
             icon.addClass('ion-navicon-round');
             icon.removeClass('ion-close-round');
+            $('.hero-text-box').fadeIn();
         }
     }
 })

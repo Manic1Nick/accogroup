@@ -236,12 +236,22 @@ header {
     margin: 5px 0;
 }
 
+.logo-sign { 
+    display: none; 
+    height: 50px;
+    width: auto;
+    float: left;
+    margin: 5px 0;
+}
+
 
 /* Main navi */
 .main-nav {
+    position: relative;
     float: right;
     list-style: none;
     margin-top: 55px;
+    z-index: 999;
 }
 
 .main-nav li {
@@ -301,7 +311,8 @@ header {
 }
 
 .sticky .logo { display: none; }
-.sticky .logo-min { 
+.sticky .logo-min { display: none; }
+.sticky .logo-sign { 
     display: block; 
     margin: 5px 0;
 }
