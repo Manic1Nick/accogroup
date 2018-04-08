@@ -1,4 +1,19 @@
-$(document).ready(function () {
+$(document).ready(function () {    
+    
+    // Get the height of the sticky main nav and create position for scrolling by links
+    const navHeight = $('.logo-min').height() + 10,
+    scrollLinksObj = {
+        'js--scroll-to-features': '.js--section-features',
+        'js--scroll-to-steps': '.js--section-steps',
+        'js--scroll-to-cities': '.js--section-cities',
+        'js--scroll-to-plans': '.js--section-plans'
+    }
+    
+    function scrollTo(target) {
+        $('html, body').animate({ 
+            scrollTop: $(target).offset().top - navHeight 
+        }, 1000);
+    }
     
     /* For the sticky navigation */
     $('.js--section-features').waypoint(function (direction) {
@@ -10,70 +25,22 @@ $(document).ready(function () {
     }, {
         offset: '25%'
     });
-    
-    // Get the height of the sticky main nav and create position for scrolling by links
-    const navHeight = $('.logo-min').height() + 10;
 
     /* Scroll on boards */
-    $('.js--scroll-to-plans').click(function () {
-        $('html, body').animate({ 
-            scrollTop: $('.js--section-plans').offset().top - navHeight 
-        }, 1000);
+    $('.navigation').on('click', function(e) {
+        e.preventDefault();
+        var $target = $(e.target);
+        for (let link in scrollLinksObj) {
+            if ($target.hasClass(link)) scrollTo(scrollLinksObj[link]);
+        }
     });
 
-    $('.js--scroll-to-start').click(function () {
-        $('html, body').animate({ 
-            scrollTop: $('.js--section-features').offset().top - navHeight 
-        }, 1000);
-    });
-
+    /* Scroll on top */
     $(document).on("click", "#logo", function () {
         $('html, body').animate({ 
             scrollTop: $('body').offset().top
         }, 1000);
     });
-
-    /* Navigation scroll */
-    // Select all links with hashes
-    $('a[href*="#"]')
-        // Remove links that don't actually link to anything
-        .not('[href="#"]')
-        .not('[href="#0"]')
-        .click(function (event) {
-            // On-page links
-            if (
-                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
-                &&
-                location.hostname == this.hostname
-            ) {
-                // Figure out element to scroll to
-                let target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                // Does a scroll target exist?
-                if (target.length) {
-                    // For active mobile navigation with clear nav
-                    if ($('.mobile-nav-icon i').hasClass('ion-close-round')) {
-                        activeMobileNavi();
-                    }                    
-                    // Only prevent default if animation is actually gonna happen
-                    event.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: target.offset().top - navHeight
-                    }, 1000, function () {
-                        // Callback after animation
-                        // Must change focus!
-                        var $target = $(target);
-                        $target.focus();
-                        if ($target.is(":focus")) { // Checking if the target was focused
-                            return false;
-                        } else {
-                            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-                            $target.focus(); // Set focus again
-                        };
-                    });
-                }
-            }
-        });
     
     /* Animations on scroll */
     //features
